@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "react-loading-skeleton/dist/skeleton.css";
+import { Layout, Topbar } from "./Components";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Details, Favourite, Home, WatchLater } from "./Pages";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Topbar />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="movies/:id" element={<Details />} />
+          <Route path="favourite" element={<Favourite />} />
+          <Route path="watch-later" element={<WatchLater />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
   );
 }
 
