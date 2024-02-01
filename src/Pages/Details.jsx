@@ -13,8 +13,6 @@ const Details = () => {
   const navigate = useNavigate();
   const { data, error } = useMovieDetailQuery(id);
   const { data: similarMovies, isLoading } = useSimilarMoviesQuery(id);
-  console.log("DATA", data);
-  console.log("SIMILAR", similarMovies);
 
   if (error) {
     console.log("Something went wromg");

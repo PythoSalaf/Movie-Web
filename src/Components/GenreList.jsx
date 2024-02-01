@@ -8,7 +8,6 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 const GenreList = () => {
   const { data, isLoading, error } = useGenreQuery();
-  console.log("Data", data);
   const settings = {
     dots: false,
     infinite: false,

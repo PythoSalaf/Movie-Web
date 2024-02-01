@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
-console.log("ENV", process.env);
-console.log("Token", accessToken);
+
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3/" }),

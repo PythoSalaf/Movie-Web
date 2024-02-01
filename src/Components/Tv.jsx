@@ -6,7 +6,6 @@ import TableSkeleton from "./TableSkeleton";
 const Tv = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading } = useDiscoverTvQuery(currentPage);
-  console.log("TV List", data);
   const totalPage = data?.total_pages;
   const itemPerPage = 20;
   const startSerial = (currentPage - 1) * itemPerPage + 1;

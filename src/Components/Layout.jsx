@@ -12,7 +12,6 @@ import { useTvListQuery } from "../Features/MoviesSlice";
 
 const Layout = () => {
   const { data: tvList, isLoading } = useTvListQuery();
-  console.log("Tv List", tvList);
   return (
     <div className="flex flex-col md:flex-row items-start justify-between mt-[3.5rem] ">
       <div className="hidden w-[20%] fixed md:block h-[85vh] overflow-y-auto mt-5">
