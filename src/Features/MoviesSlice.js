@@ -1,8 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// const apiKey = process.env.MOVIE_API_KEY;
-// const apiKeys = "ad69cc09d1d84b6ec03caf77f0b9ad54";
-const accessToken = process.env.ACCESS_TOKEN;
-
+const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
+console.log("ENV", process.env);
+console.log("Token", accessToken);
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.themoviedb.org/3/" }),
@@ -14,22 +13,107 @@ export const moviesApi = createApi({
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZDY5Y2MwOWQxZDg0YjZlYzAzY2FmNzdmMGI5YWQ1NCIsInN1YiI6IjY0YzY3NDBkNjNlNmZiMDExYjNhOWJiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fUZCSHFTAqO2aeperTU3kM0MD1Qz3DXmyXqQssY7wZ4`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }),
       providesTags: ["Movies"],
     }),
-    movie: builder.query({
-      query: (id) => `/movies/${id}`,
+    movieDetail: builder.query({
+      query: (id) => ({
+        url: `movie/${id}?language=en-US`,
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+      providesTags: ["Movies"],
     }),
+    similarMovies: builder.query({
+      query: (id) => ({
+        url: `movie/${id}/similar?language=en-US&page=2`,
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+      providesTags: ["Movies"],
+    }),
+    nowPlaying: builder.query({
+      query: (page = 1) => ({
+        url: `movie/now_playing?language=en-US&page=${page}`,
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+      providesTags: ["Movies"],
+    }),
+    upcomingMovies: builder.query({
+      query: (page = 1) => ({
+        url: `movie/upcoming?language=en-US&page=${page}`,
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+      providesTags: ["Movies"],
+    }),
+    topRated: builder.query({
+      query: (page = 1) => ({
+        url: `movie/top_rated?language=en-US&page=${page}`,
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+      providesTags: ["Movies"],
+    }),
+    discoverMovies: builder.query({
+      query: (page = 1) => ({
+        url: `discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+      providesTags: ["Movies"],
+    }),
+    discoverTv: builder.query({
+      query: (page = 1) => ({
+        url: `discover/tv?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+      providesTags: ["Movies"],
+    }),
+
     genre: builder.query({
       query: () => ({
         url: "genre/movie/list?language=en",
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZDY5Y2MwOWQxZDg0YjZlYzAzY2FmNzdmMGI5YWQ1NCIsInN1YiI6IjY0YzY3NDBkNjNlNmZiMDExYjNhOWJiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fUZCSHFTAqO2aeperTU3kM0MD1Qz3DXmyXqQssY7wZ4",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+      providesTags: ["Movies"],
+    }),
+    tvList: builder.query({
+      query: () => ({
+        url: "genre/tv/list?language=en",
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
       }),
       providesTags: ["Movies"],
@@ -37,5 +121,15 @@ export const moviesApi = createApi({
   }),
 });
 
-export const { usePopularMoviesQuery, useGenreQuery, useMovieQuery } =
-  moviesApi;
+export const {
+  usePopularMoviesQuery,
+  useGenreQuery,
+  useMovieDetailQuery,
+  useTvListQuery,
+  useSimilarMoviesQuery,
+  useNowPlayingQuery,
+  useUpcomingMoviesQuery,
+  useTopRatedQuery,
+  useDiscoverMoviesQuery,
+  useDiscoverTvQuery,
+} = moviesApi;

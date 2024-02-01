@@ -1,134 +1,120 @@
 import React from "react";
-import { useMovieQuery } from "../Features/MoviesSlice";
-import { useParams } from "react-router-dom";
+import {
+  useMovieDetailQuery,
+  useSimilarMoviesQuery,
+} from "../Features/MoviesSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { HiArrowNarrowLeft } from "react-icons/hi";
 import { About } from "../Assets";
+import { SkeletonCard } from "../Components";
 
 const Details = () => {
   const { id } = useParams();
-  const { data, error } = useMovieQuery(id);
+  const navigate = useNavigate();
+  const { data, error } = useMovieDetailQuery(id);
+  const { data: similarMovies, isLoading } = useSimilarMoviesQuery(id);
   console.log("DATA", data);
+  console.log("SIMILAR", similarMovies);
 
   if (error) {
     console.log("Something went wromg");
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full gap-5 md:items-start md:gap-3 md:flex-row">
-      <div className="w-full">
-        <h2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni,
-          similique.
-        </h2>
-        <img
-          src={`http://image.tmdb.org/t/p/w500/${data?.poster_path}` || About}
-          alt={data?.name}
-        />
-        <h2>{data?.id}</h2>
+    <div className="w-full mt-5">
+      <div
+        className="w-[80px] px-2 py-1 mb-6 rounded-lg  bg-black cursor-pointer  flex items-center justify-center"
+        onClick={() => navigate("/", { replace: true })}
+      >
+        <HiArrowNarrowLeft color="white" size={25} />
       </div>
-      <div className="w-full md:w-[70%] h-[90vh] shadow-custom overflow-y-auto">
-        <h2 className="py-2 font-serif text-lg text-center capitalize md:text-xl">
-          similar movies
-        </h2>
-        <div className="w-full mt-2">
-          <div className="flex items-start gap-5 w-[90%] mx-auto mb-3">
-            <div className="w-[140px]">
-              <img
-                src={About}
-                alt="about"
-                className="w-[85%] h-16 rounded-lg"
-              />
-            </div>
-            <div className="w-full">
-              <h4 className="text-sm md:text-base">
-                Lorem ipsum dolor sit amet consectetur.
-              </h4>
-            </div>
+      <div className="flex flex-col items-center justify-center w-full gap-5 md:items-start md:gap-3 md:flex-row">
+        <div className="w-full flex items-center md:items-start justify-center md:justify-start flex-col">
+          <img
+            src={`http://image.tmdb.org/t/p/w500/${data?.poster_path}` || About}
+            alt={data?.name}
+            className="w-[85%] md:w-[80%] h-[170px] md:h-[210px] rounded-lg"
+          />
+        </div>
+        <div className="w-full">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+            {data?.title}
+          </h2>
+          <div className="flex items-center gap-3 my-3 ">
+            <h3 className="font-semibold text-base lg:text-lg">
+              Released Date:
+            </h3>
+            <h3 className="font-semibold text-base lg:text-lg">
+              {data?.release_date}
+            </h3>
           </div>
-          <div className="flex items-start gap-5 w-[90%] mx-auto mb-3">
-            <div className="w-[140px]">
-              <img
-                src={About}
-                alt="about"
-                className="w-[85%] h-16 rounded-lg"
-              />
-            </div>
-            <div className="w-full">
-              <h4 className="text-sm md:text-base">
-                Lorem ipsum dolor sit amet consectetur.
-              </h4>
-            </div>
+          <div className="flex items-center gap-3 mb-3 ">
+            <h3 className="font-semibold text-base lg:text-lg capitalize">
+              popularity:
+            </h3>
+            <h3 className="font-semibold text-base lg:text-lg">
+              {data?.popularity}
+            </h3>
           </div>
-          <div className="flex items-start gap-5 w-[90%] mx-auto mb-3">
-            <div className="w-[140px]">
-              <img
-                src={About}
-                alt="about"
-                className="w-[85%] h-16 rounded-lg"
-              />
-            </div>
-            <div className="w-full">
-              <h4 className="text-sm md:text-base">
-                Lorem ipsum dolor sit amet consectetur.
-              </h4>
-            </div>
+          <div className="flex items-center gap-3 mb-3 ">
+            <h3 className="font-semibold text-base lg:text-lg capitalize">
+              status:
+            </h3>
+            <h3 className="font-semibold text-base lg:text-lg">
+              {data?.status}
+            </h3>
           </div>
-          <div className="flex items-start gap-5 w-[90%] mx-auto mb-3">
-            <div className="w-[140px]">
-              <img
-                src={About}
-                alt="about"
-                className="w-[85%] h-16 rounded-lg"
-              />
-            </div>
-            <div className="w-full">
-              <h4 className="text-sm md:text-base">
-                Lorem ipsum dolor sit amet consectetur.
-              </h4>
-            </div>
-          </div>
-          <div className="flex items-start gap-5 w-[90%] mx-auto mb-3">
-            <div className="w-[140px]">
-              <img
-                src={About}
-                alt="about"
-                className="w-[85%] h-16 rounded-lg"
-              />
-            </div>
-            <div className="w-full">
-              <h4 className="text-sm md:text-base">
-                Lorem ipsum dolor sit amet consectetur.
-              </h4>
-            </div>
-          </div>
-          <div className="flex items-start gap-5 w-[90%] mx-auto mb-3">
-            <div className="w-[140px]">
-              <img
-                src={About}
-                alt="about"
-                className="w-[85%] h-16 rounded-lg"
-              />
-            </div>
-            <div className="w-full">
-              <h4 className="text-sm md:text-base">
-                Lorem ipsum dolor sit amet consectetur.
-              </h4>
-            </div>
-          </div>
-          <div className="flex items-start gap-5 w-[90%] mx-auto mb-3">
-            <div className="w-[140px]">
-              <img
-                src={About}
-                alt="about"
-                className="w-[85%] h-16 rounded-lg"
-              />
-            </div>
-            <div className="w-full">
-              <h4 className="text-sm md:text-base">
-                Lorem ipsum dolor sit amet consectetur.
-              </h4>
-            </div>
+          <p className="font-serif text-base lg:text-lg">{data?.overview}</p>
+          <div className="flex items-start justify-center md:justify-normal gap-4 mt-4">
+            <button className="bg-black text-white text-sm md:text-base lg:text-lg font-semibold capitalize px-3 py-1 rounded-lg">
+              add to Favourite
+            </button>
+            <button className="bg-black text-white text-sm md:text-base lg:text-lg font-semibold capitalize px-3 py-1 rounded-lg">
+              add to watch list
+            </button>
           </div>
         </div>
+      </div>
+      <div className="w-full mt-8">
+        <h2 className="mb-4 font-serif text-xl font-semibold capitalize md:text-2xl">
+          similar movies
+        </h2>
+        {isLoading ? (
+          <div className="w-full grid grid-cols-1 gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+            {[...Array(8).keys()].map((index) => (
+              <SkeletonCard key={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="w-full grid grid-cols-1 gap-4 mt-3 mb-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+            {similarMovies?.results?.map((item) => (
+              <div className="w-[250px] md:w-full mb-3" key={item.id}>
+                <img
+                  src={
+                    `http://image.tmdb.org/t/p/w500/${item.poster_path}` ||
+                    About
+                  }
+                  alt={item.title}
+                  className="w-full h-[150px] rounded-lg"
+                />
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="w-[100px]  rounded-full mt-2">
+                      <img
+                        src={`http://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                        alt={item.title}
+                        className="w-[40px] h-[40px]  rounded-full"
+                      />
+                    </div>
+                    <h4 className="w-full text-[12px] md:text-base font-semibold md:font-bold ">
+                      {item.title}
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

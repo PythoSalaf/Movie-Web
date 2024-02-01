@@ -10,6 +10,39 @@ body {
   overflow-x: hidden;
 }
 
+.active-link::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.active-link {
+  color: black;
+  position: relative;
+  font-size: 20px;
+  font-family: serif;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.active-link::after {
+  width: 100%;
+}
+
+.inactive-link {
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

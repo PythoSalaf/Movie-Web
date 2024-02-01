@@ -1,7 +1,7 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
-const SkeletonCard = () => {
+const MovieCardSkeleton = () => {
   return (
     <div className="w-[250px] md:w-full mb-3 ">
       <div className="w-full h-[150px] ">
@@ -11,8 +11,11 @@ const SkeletonCard = () => {
         <Skeleton circle={true} height={45} width={45} />
         <Skeleton height={28} containerClassName="flex-1" />
       </div>
+      <div className="mt-2">
+        <Skeleton height={40} />
+      </div>
     </div>
   );
 };
 
-export default SkeletonCard;
+export default MovieCardSkeleton;
