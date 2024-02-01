@@ -23,7 +23,7 @@ function App() {
           <Route path="/movies/:id" element={<Details />} />
           <Route path="/favourite" element={<Favourite />} />
           <Route path="/now-playing" element={<NowPlaying />} />
-          <Route path="/discovery*" element={<Discovery />} />
+          <Route path="/discovery/*" element={<Discovery />} />
           <Route path="/top-rated" element={<TopRated />} />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/watch-later" element={<WatchLater />} />
