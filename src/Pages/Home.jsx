@@ -19,9 +19,9 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full mt-[0.8rem]">
+    <div className="w-full mt-[2rem] md:mt-[0.8rem]">
       <hr className="mb-[0.7rem] border-gray-400 w-full" />
-      <div className=" w-full flex items-center gap-6 mx-[]6px">
+      <div className=" w-full flex items-center gap-6 ">
         <GenreList />
       </div>
       <hr className="mt-[0.7rem] border-gray-400 w-full" />
@@ -78,13 +78,13 @@ const Home = () => {
       <div className="w-full mt-2  mb-3 flex justify-center items-center md:justify-end md:items-end relative">
         <Pagination total={totalPage} onChange={handlePageChange} />
       </div>
-      <div className="w-full mt-10 mb-4">
+      <div className="w-full mt-12 mb-4">
         <div className="flex items-center justify-between mb-8">
           <h3 className="font-serif text-xl md:text-2xl font-semibold mt-2 mb-4 capitalize">
             now playing
           </h3>
           <button
-            className="bg-white border border-black text-black rounded-lg px-4 font-semibold text-base lg:text-lg py-1"
+            className="bg-black text-white rounded-lg px-5 font-semibold text-base lg:text-lg py-1"
             onClick={() => navigate("now-playing")}
           >
             More

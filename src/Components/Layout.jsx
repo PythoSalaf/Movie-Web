@@ -14,38 +14,47 @@ const Layout = () => {
   const { data: tvList, isLoading } = useTvListQuery();
   return (
     <div className="flex flex-col md:flex-row items-start justify-between mt-[3.5rem] ">
-      <div className="hidden w-[20%] fixed md:block h-[85vh] overflow-y-auto mt-5">
-        <div className="w-[88%] mx-auto ">
+      <div className="hidden md:w[25%] lg:w-[20%] fixed md:block h-[85vh] overflow-y-auto mt-5">
+        <div className="md:w-[92%] lg:w-[88%] mx-auto ">
           <div className="flex items-center gap-5 mb-4">
             <GoHomeFill size={22} />
-            <Link to="/" className="text-lg font-serif">
+            <Link to="/" className="md:text-base lg:text-lg font-serif">
               Home
             </Link>
           </div>
 
           <div className="flex items-center gap-5 mb-4">
             <BsFillEjectFill size={22} />
-            <Link to="/discovery" className="text-lg font-serif">
+            <Link
+              to="/discovery"
+              className="md:text-base lg:text-lg font-serif"
+            >
               Discovery
             </Link>
           </div>
           <div className="flex items-center gap-5 mb-4">
             <BsSlashSquareFill size={22} />
-            <Link to="/now-playing" className="text-lg font-serif">
+            <Link
+              to="/now-playing"
+              className="md:text-base lg:text-lg font-serif"
+            >
               {" "}
               Now Playing
             </Link>
           </div>
           <div className="flex items-center gap-5 mb-4">
             <BsFillXDiamondFill size={22} />
-            <Link to="/top-rated" className="text-lg font-serif">
+            <Link
+              to="/top-rated"
+              className="md:text-base lg:text-lg font-serif"
+            >
               Top Rated
             </Link>
           </div>
 
           <div className="flex items-center gap-5 mb-4">
             <BsFillCollectionFill size={22} />
-            <Link to="/upcoming" className="text-lg font-serif">
+            <Link to="/upcoming" className="md:text-base lg:text-lg font-serif">
               Upcoming Movies
             </Link>
           </div>
@@ -70,7 +79,7 @@ const Layout = () => {
           )}
         </div>
       </div>
-      <div className="w-full md:w-[74%] relative bg-white ml-auto">
+      <div className="w-full md:w-[70%] lg:w[74%] relative bg-white ml-auto">
         <div className="w-[92%] mx-auto">
           <Outlet />
         </div>

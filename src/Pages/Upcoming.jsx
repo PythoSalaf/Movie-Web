@@ -28,7 +28,7 @@ const Upcoming = () => {
           {data?.results?.map((item) => (
             <Link
               to={`/movies/${item.id}`}
-              className="w-[250px] md:w-full mb-3"
+              className="w-[250px] md:w-full mb-3 bg-white rounded-lg pb-[6px] px-[6px] shadow-custom"
               key={item.id}
             >
               <img
@@ -38,18 +38,26 @@ const Upcoming = () => {
                 alt={item.title}
                 className="w-full h-[150px] rounded-lg"
               />
+              <h4 className="w-full overflow-hidden hover:overflow-visible truncate text-[12px] mt-[7px] mb-1 md:text-[15px] font-semibold md:font-bold">
+                {item.title}
+              </h4>
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center gap-3">
-                  <div className="w-[100px]  rounded-full mt-2">
+                  <div className="w-[60px]  rounded-full mt-2">
                     <img
                       src={`http://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
                       alt={item.title}
-                      className="w-[40px] h-[40px]  rounded-full"
+                      className="w-[41px] h-[41px]  rounded-full"
                     />
                   </div>
-                  <h4 className="w-full text-[12px] md:text-base font-semibold md:font-bold ">
-                    {item.title}
-                  </h4>
+                  <div className="w-full flex items-center gap-1">
+                    <h2 className="font-semibold text-sm md:text-base">
+                      Popularity :
+                    </h2>
+                    <h2 className="font-semibold text-sm md:text-base">
+                      {item.popularity}
+                    </h2>
+                  </div>
                 </div>
               </div>
             </Link>

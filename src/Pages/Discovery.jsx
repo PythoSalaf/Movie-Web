@@ -5,7 +5,7 @@ import { Movie, Tv } from "../Components";
 const Discovery = () => {
   return (
     <div className="mt-5">
-      <div className="mb-5 flex items-center gap-6">
+      <div className="mb-8 flex items-center gap-8">
         <NavLink
           to="/discovery"
           end
@@ -13,7 +13,7 @@ const Discovery = () => {
             isActive ? "active-link" : "inactive-link"
           }
         >
-          discovered Movies
+          Movies
         </NavLink>
         <NavLink
           to="tv"
@@ -21,7 +21,7 @@ const Discovery = () => {
             isActive ? "active-link" : "inactive-link"
           }
         >
-          discovered Tvs
+          Tvs
         </NavLink>
       </div>
       <Routes>

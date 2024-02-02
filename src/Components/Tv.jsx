@@ -13,10 +13,7 @@ const Tv = () => {
     setCurrentPage(selected + 1);
   };
   return (
-    <div>
-      <h2 className="mb-4 font-semibold text-xl md:text-2xl font-serif capitalize">
-        Tv Lists
-      </h2>
+    <div className="overflow-x-auto">
       {isLoading ? (
         <TableSkeleton />
       ) : (
@@ -24,16 +21,16 @@ const Tv = () => {
           <table className="min-w-full border border-gray-300">
             <thead className="bg-black">
               <tr>
-                <th className="p-2 border-b text-center text-white text-lg md:text-xl">
+                <th className="p-2 border-b text-center text-white text-base md:text-lg lg:text-xl">
                   S/N
                 </th>
-                <th className="p-2 border-b text-center text-white text-lg md:text-xl">
+                <th className="p-2 border-b text-center text-white text-base md:text-lg lg:text-xl">
                   Name
                 </th>
-                <th className="p-2 border-b text-center text-white text-lg md:text-xl">
+                <th className="p-2 border-b text-center text-white text-base md:text-lg lg:text-xl">
                   First Air Date
                 </th>
-                <th className="p-2 border-b text-center text-white text-lg md:text-xl">
+                <th className="p-2 border-b text-center text-white text-base md:text-lg lg:text-xl">
                   Popularity
                 </th>
               </tr>

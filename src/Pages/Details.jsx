@@ -31,7 +31,7 @@ const Details = () => {
           <img
             src={`http://image.tmdb.org/t/p/w500/${data?.poster_path}` || About}
             alt={data?.name}
-            className="w-[85%] md:w-[80%] h-[170px] md:h-[210px] rounded-lg"
+            className="w-[95%] md:w-[80%] h-[180px] md:h-[210px] rounded-lg"
           />
         </div>
         <div className="w-full">
