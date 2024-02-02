@@ -63,7 +63,7 @@ const GenreList = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       {isLoading ? (
         <div className="flex items-center gap-4 flex-row">
           <Skeleton containerClassName="flex-1" height={30} />

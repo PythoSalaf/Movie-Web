@@ -11,6 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const { data: Movies, isLoading } = usePopularMoviesQuery(currentPage);
+  console.log(Movies);
   const { data: NowPlaying } = useNowPlayingQuery();
   const totalPage = Movies?.total_pages;
   const handlePageChange = ({ selected }) => {
@@ -38,7 +39,7 @@ const Home = () => {
           {Movies?.results?.map((item) => (
             <Link
               to={`/movies/${item.id}`}
-              className="w-[250px] md:w-full mb-3"
+              className="w-[270px] h-[260px] md:h-[250px] bg-gray-100 px-1 rounded-lg md:w-full mb-3"
               key={item.id}
             >
               <img
@@ -46,20 +47,28 @@ const Home = () => {
                   `http://image.tmdb.org/t/p/w500/${item.poster_path}` || About
                 }
                 alt={item.title}
-                className="w-full h-[150px] rounded-lg"
+                className="w-full h-[160px] rounded-lg"
               />
+              <h4 className="w-full overflow-hidden hover:overflow-visible truncate text-sm mt-[9px] md:mt-[7px] mb-1 md:text-base font-semibold md:font-bold">
+                {item.title}
+              </h4>
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center gap-3">
-                  <div className="w-[100px]  rounded-full mt-2">
+                  <div className="w-[70px]  rounded-full mt-2">
                     <img
                       src={`http://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
                       alt={item.title}
                       className="w-[40px] h-[40px]  rounded-full"
                     />
                   </div>
-                  <h4 className="w-full text-[12px] md:text-base font-semibold md:font-bold ">
-                    {item.title}
-                  </h4>
+                  <div className="w-full flex items-center gap-1">
+                    <h2 className="font-semibold text-sm md:text-base">
+                      Popularity :
+                    </h2>
+                    <h2 className="font-semibold text-sm md:text-base">
+                      {item.popularity}
+                    </h2>
+                  </div>
                 </div>
               </div>
             </Link>
@@ -92,7 +101,7 @@ const Home = () => {
             {NowPlaying?.results?.map((item) => (
               <Link
                 to={`/movies/${item.id}`}
-                className="w-[250px] md:w-full mb-3"
+                className="w-[250px] md:w-full mb-3 bg-white rounded-lg pb-[6px] px-[6px] shadow-custom"
                 key={item.id}
               >
                 <img
@@ -103,18 +112,26 @@ const Home = () => {
                   alt={item.title}
                   className="w-full h-[150px] rounded-lg"
                 />
+                <h4 className="w-full overflow-hidden hover:overflow-visible truncate text-[12px] mt-[7px] mb-1 md:text-[15px] font-semibold md:font-bold">
+                  {item.title}
+                </h4>
                 <div className="flex items-center gap-3">
                   <div className="flex items-center justify-center gap-3">
-                    <div className="w-[100px]  rounded-full mt-2">
+                    <div className="w-[60px]  rounded-full mt-2">
                       <img
                         src={`http://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
                         alt={item.title}
-                        className="w-[40px] h-[40px]  rounded-full"
+                        className="w-[41px] h-[41px]  rounded-full"
                       />
                     </div>
-                    <h4 className="w-full text-[12px] md:text-base font-semibold md:font-bold ">
-                      {item.title}
-                    </h4>
+                    <div className="w-full flex items-center gap-1">
+                      <h2 className="font-semibold text-sm md:text-base">
+                        Popularity :
+                      </h2>
+                      <h2 className="font-semibold text-sm md:text-base">
+                        {item.popularity}
+                      </h2>
+                    </div>
                   </div>
                 </div>
               </Link>

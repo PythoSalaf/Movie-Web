@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Topbar = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex fixed top-0 items-center justify-center w-full py-2 bg-white z-10">
+    <div className="flex fixed top-0 items-center justify-center w-full h-[70px] py-2 bg-white z-10">
       <div className="w-[95%] md:w-[98%] flex items-center justify-between">
         <div className="flex items-center w-[60%] md:w-[30%] lg:w-[20%] gap-2 md:gap-4">
           <FiMenu size={26} />
