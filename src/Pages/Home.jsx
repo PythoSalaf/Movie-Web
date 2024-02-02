@@ -19,7 +19,7 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full mt-[2rem] md:mt-[1.5rem]">
+    <div className="w-full mt-[2rem] ">
       <hr className="mb-[0.7rem] border-gray-400 w-full" />
       <div className=" w-full flex items-center gap-6 ">
         <GenreList />
