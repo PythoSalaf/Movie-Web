@@ -52,7 +52,7 @@ const Movie = () => {
                       Popularity :
                     </h2>
                     <h2 className="font-semibold text-sm md:text-base">
-                      {item.popularity}
+                      {Math.round(item.popularity)}
                     </h2>
                   </div>
                 </div>

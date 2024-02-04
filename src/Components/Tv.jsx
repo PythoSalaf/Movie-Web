@@ -48,7 +48,7 @@ const Tv = () => {
                     {item.first_air_date}
                   </td>
                   <td className="py-2 px-1 border-b border-r text-center">
-                    {item.popularity}
+                    {Math.round(item.popularity)}
                   </td>
                 </tr>
               ))}
