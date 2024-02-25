@@ -5,7 +5,7 @@ import {
 } from "../Features/MoviesSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { HiArrowNarrowLeft } from "react-icons/hi";
-import { About } from "../Assets";
+import { About, About1 } from "../Assets";
 import { SkeletonCard } from "../Components";
 
 const Details = () => {
@@ -21,15 +21,19 @@ const Details = () => {
   return (
     <div className="w-full mt-5">
       <div
-        className="w-[80px] px-2 py-1 mb-6 rounded-lg  bg-black cursor-pointer  flex items-center justify-center"
+        className="w-[80px] px-1 md:px-2 py-1 mb-6 rounded-lg  bg-black cursor-pointer  flex items-center justify-center"
         onClick={() => navigate("/", { replace: true })}
       >
-        <HiArrowNarrowLeft color="white" size={25} />
+        <HiArrowNarrowLeft color="white" size={22} />
       </div>
       <div className="flex flex-col items-center justify-center w-full gap-5 md:items-start md:gap-3 md:flex-row">
         <div className="w-full flex items-center md:items-start justify-center md:justify-start flex-col">
           <img
-            src={`http://image.tmdb.org/t/p/w500/${data?.poster_path}` || About}
+            src={
+              data?.poster_path
+                ? `http://image.tmdb.org/t/p/w500/${data?.poster_path}`
+                : About1
+            }
             alt={data?.name}
             className="w-[95%] md:w-[80%] h-[180px] md:h-[210px] rounded-lg"
           />
@@ -92,8 +96,9 @@ const Details = () => {
               >
                 <img
                   src={
-                    `http://image.tmdb.org/t/p/w500/${item.poster_path}` ||
-                    About
+                    item.poster_path
+                      ? `http://image.tmdb.org/t/p/w500/${item.poster_path}`
+                      : About1
                   }
                   alt={item.title}
                   className="w-full h-[150px] rounded-lg"
@@ -105,7 +110,11 @@ const Details = () => {
                   <div className="flex items-center justify-center gap-3">
                     <div className="w-[60px]  rounded-full mt-2">
                       <img
-                        src={`http://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                        src={
+                          item.backdrop_path
+                            ? `http://image.tmdb.org/t/p/w500/${item.backdrop_path}`
+                            : About
+                        }
                         alt={item.title}
                         className="w-[41px] h-[41px]  rounded-full"
                       />

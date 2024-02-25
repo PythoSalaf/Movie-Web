@@ -61,7 +61,7 @@ const Layout = () => {
         </div>
         <hr className="mt-[1.5rem] border-gray-400 w-[89%]" />
         <div className="w-[84%] mx-auto mt-[0.8rem]">
-          <h2 className="capitalize font-serif text-xl">
+          <h2 className="capitalize font-serif text-lg lg:text-xl">
             Lists of Popular TVs
           </h2>
           {isLoading ? (
@@ -79,8 +79,8 @@ const Layout = () => {
           )}
         </div>
       </div>
-      <div className="w-full md:w-[70%] lg:w[74%] relative bg-white ml-auto">
-        <div className="w-[92%] mx-auto">
+      <div className="w-full md:w-[80%] lg:w[80%] relative ml-auto">
+        <div className="w-[93%] mx-auto">
           <Outlet />
         </div>
       </div>

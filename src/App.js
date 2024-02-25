@@ -8,6 +8,7 @@ import {
   Favourite,
   Home,
   NowPlaying,
+  SearchMovies,
   TopRated,
   Upcoming,
   WatchLater,
@@ -27,6 +28,7 @@ function App() {
           <Route path="/top-rated" element={<TopRated />} />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/watch-later" element={<WatchLater />} />
+          <Route path="/result" element={<SearchMovies />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

@@ -3,13 +3,28 @@ import { FiMenu, FiHeart, FiSearch } from "react-icons/fi";
 import { VscChromeClose } from "react-icons/vsc";
 import { BsBookmarkHeart } from "react-icons/bs";
 import { useNavigate, Link } from "react-router-dom";
+import { fetchSearchMovies } from "../Features/SearchMovieSlice";
+import { useDispatch } from "react-redux";
 
 const Topbar = () => {
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
+  const [keywords, setKeywords] = useState("");
+  const dispatch = useDispatch();
+  const handleInputChange = (e) => {
+    setKeywords(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const queryString = `?search_query=${encodeURIComponent(keywords)}`;
+    navigate(`/result${queryString}`);
+    dispatch(fetchSearchMovies(keywords));
+  };
+
   return (
     <div className="flex fixed top-0 items-center justify-center w-full h-[70px] py-2 bg-white z-10">
-      <div className="w-[95%] md:w-[98%] flex items-center justify-between">
+      <div className="w-[95%] md:w-[97%] flex items-center justify-between">
         <div className="flex items-center w-[60%] md:w-[30%] lg:w-[20%] gap-2 md:gap-4">
           <div className="block md:hidden cursor-pointer ">
             {!toggle ? (
@@ -64,15 +79,23 @@ const Topbar = () => {
             </Link>
           </div>
         )}
-        <div className="flex items-center justify-center w-full">
+        <form
+          onSubmit={handleSearch}
+          className="flex items-center justify-center w-full"
+        >
           <input
             type="search"
+            value={keywords}
+            onChange={handleInputChange}
             className="border-[2px] border-black w-[60%] md:w-[60%] lg:w-[40%] h-[34px] md:h-[40px] rounded-l-xl  outline-none px-2"
           />
-          <div className="border-[2px] h-[34px] md:h-[40px] flex items-center border-l-0 justify-center border-black px-[10px] rounded-r-xl ">
+          <button
+            type="submit"
+            className="border-[2px] h-[34px] md:h-[40px] flex items-center border-l-0 justify-center border-black px-[10px] rounded-r-xl "
+          >
             <FiSearch size={20} />
-          </div>
-        </div>
+          </button>
+        </form>
         <div className="hidden md:flex items-center gap-2 md:gap-5 ">
           <FiHeart
             size={26}

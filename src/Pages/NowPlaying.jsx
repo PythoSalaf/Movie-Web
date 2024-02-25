@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Pagination, SkeletonCard } from "../Components";
 import { useNowPlayingQuery } from "../Features/MoviesSlice";
 import { Link } from "react-router-dom";
-import { About } from "../Assets";
+import { About, About1 } from "../Assets";
 
 const NowPlaying = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,13 +17,13 @@ const NowPlaying = () => {
         Now Playing
       </h2>
       {isLoading ? (
-        <div className="w-full grid grid-cols-1 gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2  gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
           {[...Array(8).keys()].map((index) => (
             <SkeletonCard key={index} />
           ))}
         </div>
       ) : (
-        <div className="w-full grid grid-cols-1 gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2  gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
           {data?.results?.map((item) => (
             <Link
               to={`/movies/${item.id}`}
@@ -32,7 +32,9 @@ const NowPlaying = () => {
             >
               <img
                 src={
-                  `http://image.tmdb.org/t/p/w500/${item.poster_path}` || About
+                  item.poster_path
+                    ? `http://image.tmdb.org/t/p/w500/${item.poster_path}`
+                    : About1
                 }
                 alt={item.title}
                 className="w-full h-[150px] rounded-lg"
@@ -44,7 +46,11 @@ const NowPlaying = () => {
                 <div className="flex items-center justify-center gap-3">
                   <div className="w-[60px]  rounded-full mt-2">
                     <img
-                      src={`http://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                      src={
+                        item.backdrop_path
+                          ? `http://image.tmdb.org/t/p/w500/${item.backdrop_path}`
+                          : About
+                      }
                       alt={item.title}
                       className="w-[41px] h-[41px]  rounded-full"
                     />

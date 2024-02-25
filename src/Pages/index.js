@@ -4,5 +4,6 @@ export { default as Discovery } from "../Pages/Discovery";
 export { default as Upcoming } from "../Pages/Upcoming";
 export { default as Favourite } from "../Pages/Favourite";
 export { default as NowPlaying } from "../Pages/NowPlaying";
+export { default as SearchMovies } from "../Pages/SearchMovies";
 export { default as TopRated } from "../Pages/TopRated";
 export { default as WatchLater } from "../Pages/WatchLater";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import { useDiscoverMoviesQuery } from "../Features/MoviesSlice";
 import Pagination from "./Pagination";
-import { About } from "../Assets";
+import { About, About1 } from "../Assets";
 import { Link } from "react-router-dom";
 
 const Movie = () => {
@@ -15,13 +15,13 @@ const Movie = () => {
   return (
     <div>
       {isLoading ? (
-        <div className="w-full grid grid-cols-1 gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2  gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
           {[...Array(8).keys()].map((index) => (
             <MovieCardSkeleton key={index} />
           ))}
         </div>
       ) : (
-        <div className="w-full grid grid-cols-1 gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2  gap-4 my-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
           {data?.results?.map((item) => (
             <Link
               to={`/movies/${item.id}`}
@@ -30,7 +30,9 @@ const Movie = () => {
             >
               <img
                 src={
-                  `http://image.tmdb.org/t/p/w500/${item.poster_path}` || About
+                  item.poster_path
+                    ? `http://image.tmdb.org/t/p/w500/${item.poster_path}`
+                    : About1
                 }
                 alt={item.title}
                 className="w-full h-[160px] rounded-lg"
@@ -42,7 +44,11 @@ const Movie = () => {
                 <div className="flex items-center justify-center gap-3">
                   <div className="w-[70px]  rounded-full mt-2">
                     <img
-                      src={`http://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+                      src={
+                        item.backdrop_path
+                          ? `http://image.tmdb.org/t/p/w500/${item.backdrop_path}`
+                          : About
+                      }
                       alt={item.title}
                       className="w-[40px] h-[40px]  rounded-full"
                     />
